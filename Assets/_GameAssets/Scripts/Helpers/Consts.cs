@@ -13,7 +13,7 @@ public class Consts
     {
         public const string GOLD_WHEAT = "GoldWheat";
         public const string ROTTEN_WHEAT = "RottenWheat";
-        public const string HOLLYD_WHEAT = "HollyWheat";
+        public const string HOLLY_WHEAT = "HollyWheat";
 
     }
 }

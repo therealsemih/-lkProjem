@@ -1,0 +1,13 @@
+using UnityEngine;
+
+public class RottenWheatCollectable : MonoBehaviour
+{
+    [SerializeField] private PlayerController _playerController;
+    [SerializeField] private float _movementDecreaseSpeed;
+    [SerializeField] private float _resetBoostDuration;
+    public void Collect()
+    {
+        _playerController._setMovementSpeed(_movementDecreaseSpeed, _resetBoostDuration);
+        Destroy(gameObject);
+    }
+}
