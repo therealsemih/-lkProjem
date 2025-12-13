@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HollyWheatCollectable : MonoBehaviour
+public class HollyWheatCollectable : MonoBehaviour, ICollectable
 {
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private float _forceIncrease;

@@ -1,22 +1,14 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInteractionController : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.CompareTag(Consts.WheatTypes.GOLD_WHEAT))
-        {
-            other.gameObject.GetComponent<GoldWheatCollectable>().Collect();
-        }
 
-        if (other.CompareTag(Consts.WheatTypes.HOLLY_WHEAT))
+        if(other.gameObject.TryGetComponent<ICollectable>(out var collectible))
         {
-            other.gameObject.GetComponent<HollyWheatCollectable>().Collect();
-        }
-
-        if (other.CompareTag(Consts.WheatTypes.ROTTEN_WHEAT))
-        {
-            other.gameObject.GetComponent<RottenWheatCollectable>().Collect();
+            collectible.Collect();
         }
     }
 }
