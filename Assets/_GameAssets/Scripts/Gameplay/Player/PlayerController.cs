@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEditor.Media;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -6,6 +7,7 @@ using UnityEngine.Rendering;
 public class PlayerController : MonoBehaviour
 {
     public event Action OnPlayerJumped;
+    public event Action <PlayerState> OnPlayerStateChanged;
 
     [Header("References")]
     [SerializeField] private Transform _orientationTransform;
@@ -98,6 +100,7 @@ public class PlayerController : MonoBehaviour
         if (newState != currentState)
         {
             _stateController.ChangeState(newState);
+            OnPlayerStateChanged?.Invoke(newState);
         }
         Debug.Log(newState);
     }
@@ -163,7 +166,7 @@ public class PlayerController : MonoBehaviour
     {
         return _isSliding;
     }
-    public void _setMovementSpeed(float speed, float duration)
+    public void SetMovementSpeed(float speed, float duration)
     {
         _movementSpeed += speed;
         Invoke(nameof(ResetMovementSpeed), duration);
