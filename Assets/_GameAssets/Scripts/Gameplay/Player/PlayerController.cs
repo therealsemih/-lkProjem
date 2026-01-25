@@ -51,6 +51,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if(GameManager.Instance.GetCurrentGameStates() != GameStates.Play
+            && GameManager.Instance.GetCurrentGameStates() != GameStates.Resume)
+        {
+            return;
+        }
         setInputs();
         setStates();
         SetPlayerDrag();
@@ -58,6 +63,11 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if(GameManager.Instance.GetCurrentGameStates() != GameStates.Play
+            && GameManager.Instance.GetCurrentGameStates() != GameStates.Resume)
+        {
+            return;
+        }
         SetPlayerMovement();
 
     }
@@ -101,8 +111,9 @@ public class PlayerController : MonoBehaviour
         {
             _stateController.ChangeState(newState);
             OnPlayerStateChanged?.Invoke(newState);
+            Debug.Log(newState);
         }
-        Debug.Log(newState);
+        
     }
 
 
